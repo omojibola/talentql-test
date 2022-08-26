@@ -45,6 +45,7 @@ const startApp = async () => {
     //save data for next table
     disable();
     savedData = res?.tableData[page + 1];
+    label.innerHTML = `Showing Page ${page}`;
     tbody.innerHTML = newData;
   };
 
@@ -72,6 +73,7 @@ const startApp = async () => {
       })
       .join('');
     disable();
+    label.innerHTML = `Showing Page ${page}`;
     tbody.innerHTML = mappedData;
   };
 
@@ -81,8 +83,6 @@ const startApp = async () => {
     } else {
       renderTablefromSavedData();
     }
-
-    label.innerHTML = `Showing Page ${pageNumber}`;
   };
 
   renderPage(page);
