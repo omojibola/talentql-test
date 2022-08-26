@@ -2,7 +2,6 @@ import { getData } from './apicall';
 import { IData } from './interfaces';
 
 const startApp = async () => {
-  let loading = false;
   let page = 4;
   let tbody: any = document.getElementById('table-body');
   let nextBtn: any = document.querySelector('#next-btn');
@@ -28,10 +27,9 @@ const startApp = async () => {
 
   //render html table from new api call
   const renderTableFromApi = async (pageNumber: number) => {
-    loading = true;
     let res: any = await getData(pageNumber);
     pagination = res.navigations;
-    loading = false;
+
     newData = res?.tableData[page]
       .map((item: IData) => {
         return `
