@@ -2,7 +2,7 @@ import { getData } from './apicall';
 import { IData } from './interfaces';
 
 const startApp = async () => {
-  let page = 4;
+  let page = 1;
   let tbody: any = document.getElementById('table-body');
   let nextBtn: any = document.querySelector('#next-btn');
   let prevBtn: any = document.querySelector('#prev-btn');
