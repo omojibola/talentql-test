@@ -3,19 +3,36 @@ import { IData } from './interfaces';
 
 const startApp = async () => {
   let loading = false;
-  let page = 1;
+  let page = 4;
   let tbody: any = document.getElementById('table-body');
   let nextBtn: any = document.querySelector('#next-btn');
   let prevBtn: any = document.querySelector('#prev-btn');
   let newData: Array<IData>;
   let savedData = [];
+  let pagination;
+
+  //disable btns
+  const disable = () => {
+    if (page === 1) {
+      prevBtn.disabled = true;
+    } else {
+      prevBtn.disabled = false;
+    }
+
+    if (!pagination?.next) {
+      nextBtn.disabled = true;
+    } else {
+      nextBtn.disabled = false;
+    }
+  };
 
   //render html table from new api call
   const renderTableFromApi = async (pageNumber: number) => {
     loading = true;
     let res: any = await getData(pageNumber);
+    pagination = res.navigations;
     loading = false;
-    newData = res?.tableData
+    newData = res?.tableData[page]
       .map((item: IData) => {
         return `
                 <tr data-entryid=${item.id} >
@@ -27,7 +44,8 @@ const startApp = async () => {
       })
       .join('');
     //save data for next table
-    savedData = res?.tableData;
+    disable();
+    savedData = res?.tableData[page + 1];
     tbody.innerHTML = newData;
   };
 
@@ -38,7 +56,7 @@ const startApp = async () => {
 
   prevBtn?.addEventListener('click', function () {
     page = page - 1;
-    renderPage(page);
+    renderTableFromApi(page);
   });
 
   //table from stored data
@@ -54,6 +72,7 @@ const startApp = async () => {
             `;
       })
       .join('');
+    disable();
     tbody.innerHTML = mappedData;
   };
 
