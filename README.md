@@ -1,4 +1,5 @@
 # Frontend Assessment
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/fcb578ba409347c5a9001b01aad9f50a)](https://www.codacy.com/gh/omojibola/talentql-test/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=omojibola/talentql-test&amp;utm_campaign=Badge_Grade)
 
 Build and deploy a very simple frontend app for paginated data, that does the following
 
