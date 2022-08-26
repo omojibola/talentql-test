@@ -4,6 +4,7 @@ import { IData } from './interfaces';
 const startApp = async () => {
   let page = 1;
   let tbody: any = document.getElementById('table-body');
+  let label: any = document.getElementById('label');
   let nextBtn: any = document.querySelector('#next-btn');
   let prevBtn: any = document.querySelector('#prev-btn');
   let newData: Array<IData>;
@@ -80,6 +81,8 @@ const startApp = async () => {
     } else {
       renderTablefromSavedData();
     }
+
+    label.innerHTML = `Showing Page ${pageNumber}`;
   };
 
   renderPage(page);
